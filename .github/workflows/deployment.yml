@@ -18,28 +18,28 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Wait for other checks
         run: |
           echo "Waiting for workflows to complete..."
           sleep 30 # Wait for other workflows to start/complete
-          
+
       - name: Check workflow status
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "Checking workflow statuses..."
-          
+
           # Check lint workflow status
-          gh run list --workflow=lint.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion' 
+          gh run list --workflow=lint.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion'
           | grep -q "success" || exit 1
 
           # Check test workflow status
-          gh run list --workflow=test.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion' 
+          gh run list --workflow=test.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion'
           | grep -q "success" || exit 1
 
           # Check security scan workflow status
-          gh run list --workflow=security-scan.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion' 
+          gh run list --workflow=security-scan.yml --branch ${{ github.ref_name }} --json conclusion --jq '.[0].conclusion'
           | grep -q "success" || exit 1
 
   deploy:
