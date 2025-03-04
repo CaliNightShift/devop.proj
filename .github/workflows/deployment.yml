@@ -15,9 +15,9 @@ verify-checks:
 runs-on: ubuntu-latest
 steps:
 - name: Checkout repository
-uses: actions/checkout@v3
+  uses: actions/checkout@v3
 - name: Wait for other checks
-run: |
+  run: |
 echo "Waiting for workflows to complete..."
 sleep 30 # Wait for other workflows to start/complete
 - name: Check workflow status

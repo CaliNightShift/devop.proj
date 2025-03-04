@@ -1,4 +1,3 @@
-# lint.yml
 name: Lint Code
 on: [push, pull_request]
 jobs:
