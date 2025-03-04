@@ -1,3 +1,4 @@
+# security-scan.yml
 name: Security Scan
 on: [push]
 jobs:
@@ -5,9 +6,10 @@ scan:
 runs-on: ubuntu-latest
 steps:
 - name: Checkout code
+uses: actions/checkout@v3
 - name: Run Trivy security scan
 uses: aquasecurity/trivy-action@master
 with:
 scan-type: 'fs'
 scan-ref: '.'
-format: 'table'
+format: 'table

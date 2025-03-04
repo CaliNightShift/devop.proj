@@ -1,3 +1,4 @@
+# lint.yml
 name: Lint Code
 on: [push, pull_request]
 jobs:
@@ -5,6 +6,7 @@ lint:
 runs-on: ubuntu-latest
 steps:
 - name: Checkout code
+uses: actions/checkout@v3
 - name: Setup Node.js
 uses: actions/setup-node@v3
 with:
