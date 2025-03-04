@@ -1,0 +1,21 @@
+# test.yml
+name: Run Unit Tests
+on: [push, pull_request]
+jobs:
+test:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@v3
+- name: Setup Node.js
+uses: actions/setup-node@v3
+with:
+node-version: '18.x'
+- name: Install Dependencies
+run: |
+cd src
+npm install
+- name: Run Tests
+run: |
+cd src
+npm test
